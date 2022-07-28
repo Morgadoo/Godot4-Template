@@ -18,8 +18,6 @@ var gravity_vec = Vector3()
 @onready var head = $Pivot
 @onready var ground_check = $GroundCheck
 
-func _ready():
-	pass
 
 func _input(event):
 	if (event is InputEventMouseButton):
@@ -66,6 +64,7 @@ func _physics_process(delta):
 	velocity.z = h_velocity.z + gravity_vec.z
 	velocity.x = h_velocity.x + gravity_vec.x
 	velocity.y = gravity_vec.y
+	velocity.normalized()
 	
 	move_and_slide()
 	
