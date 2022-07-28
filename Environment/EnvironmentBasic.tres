@@ -1,0 +1,26 @@
+[gd_resource type="Environment" load_steps=3 format=3 uid="uid://bdq8k26n3dgf7"]
+
+[sub_resource type="PhysicalSkyMaterial" id="PhysicalSkyMaterial_pfgfh"]
+rayleigh_coefficient = 0.93
+rayleigh_color = Color(0.298039, 0.4, 0.596078, 1)
+mie_eccentricity = 0.93
+mie_color = Color(0.894118, 0.847059, 0.733333, 1)
+turbidity = 3.5
+sun_disk_scale = 0.4
+ground_color = Color(0.521569, 0.52549, 0.556863, 1)
+
+[sub_resource type="Sky" id="Sky_iaoua"]
+sky_material = SubResource("PhysicalSkyMaterial_pfgfh")
+process_mode = 1
+radiance_size = 4
+
+[resource]
+background_mode = 2
+sky = SubResource("Sky_iaoua")
+tonemap_mode = 2
+glow_enabled = true
+fog_light_color = Color(0.529412, 0.643137, 0.690196, 1)
+fog_density = 0.0001
+fog_aerial_perspective = 0.769
+fog_height = 230.4
+fog_height_density = 0.0025

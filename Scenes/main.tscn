@@ -1,0 +1,29 @@
+[gd_scene load_steps=5 format=3 uid="uid://f7reh5afxyov"]
+
+[ext_resource type="Script" path="res://Scenes/main.gd" id="1_ck17t"]
+[ext_resource type="Environment" uid="uid://bdq8k26n3dgf7" path="res://Environment/EnvironmentBasic.tres" id="2_13kyh"]
+[ext_resource type="PackedScene" uid="uid://2pfh7huhb43g" path="res://Scenes/geo.tscn" id="3_7dfo4"]
+[ext_resource type="PackedScene" uid="uid://b60rtcjsdyd4s" path="res://Characters/first_person_player.tscn" id="4_ipe83"]
+
+[node name="Main" type="Node3D"]
+script = ExtResource("1_ck17t")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.866023, -0.433016, 0.250001, 0, 0.499998, 0.866027, -0.500003, 0.749999, -0.43301, 0, 0, 0)
+shadow_enabled = true
+directional_shadow_max_distance = 250.0
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = ExtResource("2_13kyh")
+
+[node name="Geo" parent="." instance=ExtResource("3_7dfo4")]
+
+[node name="FirstPersonPlayer(Garbaj)" parent="." instance=ExtResource("4_ipe83")]
+
+[node name="FPSLabel" type="Label" parent="."]
+offset_left = 24.0
+offset_top = 24.0
+offset_right = 64.0
+offset_bottom = 47.0
+theme_override_font_sizes/font_size = 24
+text = "FPS"

@@ -1,0 +1,43 @@
+[gd_scene load_steps=6 format=3 uid="uid://b60rtcjsdyd4s"]
+
+[ext_resource type="Script" path="res://Characters/FirstPersonPlayer.gd" id="1_tih21"]
+[ext_resource type="Environment" uid="uid://bdq8k26n3dgf7" path="res://Environment/EnvironmentBasic.tres" id="2_gbyil"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_vhr4h"]
+height = 0.4
+radius = 0.3
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_8sk8o"]
+points = PackedVector3Array(0.291421, 0.662217, 0.0264721, -0.291425, -0.662225, -0.0264153, -0.264987, -0.689019, -0.105926, -0.239373, 0.74486, -0.106337, -0.0782065, 0.625979, 0.286982, 0.158628, -0.687391, 0.237942, 0.131396, -0.657111, -0.262849, -0.0264153, 0.662225, -0.291425, -0.233259, -0.648039, 0.181449, 0.267491, -0.722179, -0.0534061, -0.286948, 0.625905, 0.0782534, 0.233307, 0.648015, -0.181386, 0.158628, 0.687391, 0.237942, -0.154128, -0.591013, -0.256953, -0.109544, -0.877035, -0.0273269, 0.0273849, 0.877003, 0.109599, -0.0264153, -0.662225, 0.291425, 0.256929, -0.590957, 0.154168, -0.256953, 0.591013, -0.154128, 0.0544229, 0.844152, -0.163327, 0.281653, -0.563187, -0.102339, 0.109599, -0.877003, 0.0273849, -0.233258, 0.648036, 0.181448, -0.0264152, -0.662221, -0.291423, 0.0782596, 0.625955, -0.286971, 0.0782534, 0.625905, 0.286948, -0.0543631, -0.844134, 0.163382, 0.0544231, -0.844156, -0.163328, -0.154128, -0.591013, 0.256953, -0.163328, 0.844156, 0.0544231, -0.154128, 0.591013, -0.256953, 0.256929, 0.590957, 0.154168)
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_lewl4"]
+radius = 0.3
+height = 1.8
+
+[node name="FirstPersonPlayer" type="Node3D"]
+
+[node name="CharacterBody3D" type="CharacterBody3D" parent="."]
+script = ExtResource("1_tih21")
+
+[node name="Pivot" type="Node3D" parent="CharacterBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.6, 0)
+
+[node name="Camera3D" type="Camera3D" parent="CharacterBody3D/Pivot"]
+environment = ExtResource("2_gbyil")
+current = true
+fov = 90.0
+
+[node name="Foot" type="CollisionShape3D" parent="CharacterBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.2, 0)
+shape = SubResource("CylinderShape3D_vhr4h")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="CharacterBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9, 0)
+shape = SubResource("ConvexPolygonShape3D_8sk8o")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="CharacterBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9, 0)
+mesh = SubResource("CapsuleMesh_lewl4")
+
+[node name="GroundCheck" type="RayCast3D" parent="CharacterBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.2, 0)
